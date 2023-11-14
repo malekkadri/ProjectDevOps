@@ -25,6 +25,7 @@ pipeline {
                     sh "mvn validate"
                     echo 'Compiling...'
                     sh "mvn compile"
+                    sh "mvn package"
                 }
             }
         }
