@@ -2,7 +2,7 @@ FROM eclipse-temurin:11-jdk-alpine as build
 
 WORKDIR /workspace/app
 
-RUN apk add --no-cache maven
+RUN apk add --no-cache maven=3.6.3
 
 COPY . .
 
