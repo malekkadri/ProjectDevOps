@@ -63,7 +63,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     echo 'Testing..'
-                    sh "mvn test -Dtest=ProductServiceImplTest -Dspring.profiles.active=test"
+                    sh "mvn test -Dtest=FactureServiceTest -Dspring.profiles.active=test"
                 }
             }
         }
