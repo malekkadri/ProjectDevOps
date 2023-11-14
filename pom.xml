@@ -111,7 +111,7 @@
     <packaging>jar</packaging>
 
     <build>
-        <finalName>achat-${project.version}</finalName>
+        <finalName>achat</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
