@@ -27,7 +27,7 @@ services:
     container_name: backend
     depends_on:
       - database
-    image: rayenbakali/achat:1.0.0
+    image: rayenbakali/achat:1.0
     networks:
       - devops_project
     ports:
