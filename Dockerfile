@@ -1,6 +1,6 @@
 FROM eclipse-temurin:11-jdk-alpine as build
 
-LABEL authors="DroidZed"
+LABEL authors="RayenBakali"
 
 WORKDIR /workspace/app
 
