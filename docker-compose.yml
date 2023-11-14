@@ -13,7 +13,7 @@ services:
   database:
     container_name: database
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_ROOT_PASSWORD=root
     image: mysql:5.7
     networks:
       - devops_project
