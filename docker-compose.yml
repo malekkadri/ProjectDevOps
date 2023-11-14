@@ -1,0 +1,34 @@
+version: '3.8'
+
+networks:
+  devops_project:
+    driver: bridge
+
+volumes:
+  database:
+
+
+services:
+
+  database:
+    container_name: database
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    image: mysql:5.7
+    networks:
+      - devops_project
+    ports:
+      - "3306:3306"
+    volumes:
+      - database:/var/lib/mysql
+
+  backend:
+    restart: on-failure
+    container_name: backend
+    depends_on:
+      - database
+    image: droidzed/aymendhahri-5sim3-g1-projet4-spring-angular:1.0.0
+    networks:
+      - devops_project
+    ports:
+      - "8082:8082"
