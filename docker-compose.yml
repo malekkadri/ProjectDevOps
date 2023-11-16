@@ -12,6 +12,8 @@ services:
       MYSQL_DATABASE: achatdb
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - mynetwork
   # spring app
   achat_backend:
     image: anouarmh15/achat:1.0.0
@@ -24,7 +26,11 @@ services:
       - backend:/backend
     environment:
       SPRING_DATASOURCE_URL : jdbc:mysql://db:3306/achatdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    driver: bridge
 volumes:
   db_data:
   backend:
