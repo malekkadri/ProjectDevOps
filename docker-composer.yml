@@ -9,7 +9,6 @@ services:
       - "3307:3306"
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: achatdb
     volumes:
       - db_data:/var/lib/mysql
