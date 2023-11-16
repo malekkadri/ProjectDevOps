@@ -1,0 +1,26 @@
+version: '3.8'
+# definir container
+services:
+
+  db:
+    image: mysql:latest
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: achatdb
+    volumes:
+      - db_data:/var/lib/mysql
+  # spring app
+  achat:
+    image: malik1997/achat:v1.0
+    restart: unless-stopped
+    ports:
+      - "8089:8089"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
