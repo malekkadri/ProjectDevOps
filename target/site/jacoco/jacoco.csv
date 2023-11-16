@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 achat,tn.esprit.rh.achat.entities,CategorieProduit,46,0,0,0,7,0,10,0,10,0
 achat,tn.esprit.rh.achat.entities,Operateur,56,0,0,0,8,0,12,0,12,0
 achat,tn.esprit.rh.achat.entities,Facture,96,0,0,0,12,0,20,0,20,0
-achat,tn.esprit.rh.achat.entities,CategorieFournisseur,15,0,0,0,2,0,1,0,1,0
+achat,tn.esprit.rh.achat.entities,CategorieFournisseur,24,0,0,0,2,0,1,0,1,0
 achat,tn.esprit.rh.achat.entities,DetailFournisseur,66,0,0,0,9,0,14,0,14,0
 achat,tn.esprit.rh.achat.entities,Produit,96,0,0,0,12,0,20,0,20,0
 achat,tn.esprit.rh.achat.entities,Reglement,66,0,0,0,9,0,14,0,14,0
