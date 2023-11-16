@@ -15,7 +15,7 @@ services:
       - db_data:/var/lib/mysql
   # spring app
   achat:
-    image: malik1997/achat:v1.0
+    image: anouarmh15/alpine:1.0
     restart: unless-stopped
     ports:
       - "8089:8089"
