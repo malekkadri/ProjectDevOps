@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FournisseurServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">achat</a> &gt; <a href="index.source.html" class="el_package">tn.esprit.rh.achat.services</a> &gt; <span class="el_source">FournisseurServiceImpl.java</span></div><h1>FournisseurServiceImpl.java</h1><pre class="source lang-java linenums">package tn.esprit.rh.achat.services;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tn.esprit.rh.achat.entities.DetailFournisseur;
+import tn.esprit.rh.achat.entities.Fournisseur;
+import tn.esprit.rh.achat.entities.SecteurActivite;
+import tn.esprit.rh.achat.repositories.DetailFournisseurRepository;
+import tn.esprit.rh.achat.repositories.FournisseurRepository;
+import tn.esprit.rh.achat.repositories.ProduitRepository;
+import tn.esprit.rh.achat.repositories.SecteurActiviteRepository;
+
+import java.util.Date;
+import java.util.List;
+
+@Service
+<span class="nc" id="L18">@Slf4j</span>
+<span class="nc" id="L19">public class FournisseurServiceImpl implements IFournisseurService {</span>
+
+	@Autowired
+	FournisseurRepository fournisseurRepository;
+	@Autowired
+	DetailFournisseurRepository detailFournisseurRepository;
+	@Autowired
+	ProduitRepository produitRepository;
+	@Autowired
+	SecteurActiviteRepository secteurActiviteRepository;
+
+	@Override
+	public List&lt;Fournisseur&gt; retrieveAllFournisseurs() {
+<span class="nc" id="L32">		List&lt;Fournisseur&gt; fournisseurs = (List&lt;Fournisseur&gt;) fournisseurRepository.findAll();</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">		for (Fournisseur fournisseur : fournisseurs) {</span>
+<span class="nc" id="L34">			log.info(&quot; fournisseur : &quot; + fournisseur);</span>
+<span class="nc" id="L35">		}</span>
+<span class="nc" id="L36">		return fournisseurs;</span>
+	}
+
+
+	public Fournisseur addFournisseur(Fournisseur f /*Master*/) {
+<span class="nc" id="L41">		DetailFournisseur df= new DetailFournisseur();//Slave</span>
+<span class="nc" id="L42">		df.setDateDebutCollaboration(new Date()); //util</span>
+		//On affecte le &quot;Slave&quot; au &quot;Master&quot;
+<span class="nc" id="L44">		f.setDetailFournisseur(df);	</span>
+<span class="nc" id="L45">		fournisseurRepository.save(f);</span>
+<span class="nc" id="L46">		return f;</span>
+	}
+	
+	private DetailFournisseur  saveDetailFournisseur(Fournisseur f){
+<span class="nc" id="L50">		DetailFournisseur df = f.getDetailFournisseur();</span>
+<span class="nc" id="L51">		detailFournisseurRepository.save(df);</span>
+<span class="nc" id="L52">		return df;</span>
+	}
+
+	public Fournisseur updateFournisseur(Fournisseur f) {
+<span class="nc" id="L56">		DetailFournisseur df = saveDetailFournisseur(f);</span>
+<span class="nc" id="L57">		f.setDetailFournisseur(df);	</span>
+<span class="nc" id="L58">		fournisseurRepository.save(f);</span>
+<span class="nc" id="L59">		return f;</span>
+	}
+
+	@Override
+	public void deleteFournisseur(Long fournisseurId) {
+<span class="nc" id="L64">		fournisseurRepository.deleteById(fournisseurId);</span>
+
+<span class="nc" id="L66">	}</span>
+
+	@Override
+	public Fournisseur retrieveFournisseur(Long fournisseurId) {
+
+<span class="nc" id="L71">		Fournisseur fournisseur = fournisseurRepository.findById(fournisseurId).orElse(null);</span>
+<span class="nc" id="L72">		return fournisseur;</span>
+	}
+
+	@Override
+	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
+<span class="nc" id="L77">		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);</span>
+<span class="nc" id="L78">		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);</span>
+<span class="nc" id="L79">        fournisseur.getSecteurActivites().add(secteurActivite);</span>
+<span class="nc" id="L80">        fournisseurRepository.save(fournisseur);</span>
+		
+		
+<span class="nc" id="L83">	}</span>
+
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
