@@ -4,4 +4,4 @@ COPY /target/achat.jar /achat.jar
 
 EXPOSE 8082
 
-ENTRYPOINT ["java", "-jar", "/achat.jar"]
+ENTRYPOINT ["java", "-jar", "/achat-1.0.jar"]
